@@ -7,13 +7,21 @@ const ProductCard = ({ product, addToCart }) => {
       className={`${styles.card} ${!product.inStock ? styles.outOfStock : ''}`}
     >
       <h3>{product.name}</h3>
-      <p>Price: {product.price}</p>
-      <p>Status: {product.inStock ? 'In Stock' : 'Out of Stock'}</p>
 
-      
+      <p>Price: ${product.price}</p>
+
+      <p>
+        Status: {product.inStock ? 'In Stock' : 'Out of Stock'}
+      </p>
+
       <button
         data-testid={'product-' + product.id}
-        onClick={() => addToCart(product)}
+        onClick={() => {
+          if (product.inStock) {
+            addToCart(product)
+          }
+        }}
+        disabled={!product.inStock}
       >
         Add to Cart
       </button>

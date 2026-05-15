@@ -4,46 +4,34 @@ import DarkModeToggle from './components/DarkModeToggle'
 import Cart from './components/Cart'
 
 const App = () => {
-
   const [darkMode, setDarkMode] = useState(false)
-
-  
   const [cart, setCart] = useState([])
-
-  
   const [category, setCategory] = useState('all')
 
-  
   const products = [
-    { id: 1, name: 'Apple', category: 'Fruits' },
-    { id: 2, name: 'Banana', category: 'Fruits' },
-    { id: 3, name: 'Milk', category: 'Dairy' },
-    { id: 4, name: 'Cheese', category: 'Dairy' },
+    { id: 1, name: 'Apple', category: 'Fruits', price: 1 },
+    { id: 2, name: 'Banana', category: 'Fruits', price: 1.2 },
+    { id: 3, name: 'Milk', category: 'Dairy', price: 2.5 },
+    { id: 4, name: 'Cheese', category: 'Dairy', price: 3 }
   ]
 
-  
   const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev)
+    setDarkMode(prev => !prev)
   }
 
   const addToCart = (product) => {
-    setCart([...cart, product])
+    setCart(prev => [...prev, product])
   }
 
   return (
     <div className={darkMode ? 'dark' : 'light'}>
-      <h1> Shopping App</h1>
-      <p>
-        Welcome! Your task is to implement filtering, cart management, and dark mode.
-      </p>
+      <h1>Shopping App</h1>
 
-      
       <DarkModeToggle
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
       />
 
-      
       <label>Filter by Category: </label>
       <select
         value={category}
@@ -54,14 +42,12 @@ const App = () => {
         <option value="Dairy">Dairy</option>
       </select>
 
-      
       <ProductList
         products={products}
         category={category}
         addToCart={addToCart}
       />
 
-      
       <Cart cart={cart} />
     </div>
   )
