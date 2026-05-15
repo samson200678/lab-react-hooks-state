@@ -8,7 +8,9 @@ const Cart = ({ cart }) => {
       ) : (
         <ul>
           {cart.map((item, index) => (
-            <li key={index}>{item.name}</li>
+            <li key={index}>
+              {item.name} is in your cart
+            </li>
           ))}
         </ul>
       )}
